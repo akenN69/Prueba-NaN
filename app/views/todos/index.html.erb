@@ -1,0 +1,8 @@
+<h1>Todos#index</h1>
+<% @todos.each do |todo| %>
+      
+       <%= todo.completed %>
+        <%= todo.task.name %>
+        <%= todo.user.email %>
+    
+    <% end %>

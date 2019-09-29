@@ -1,0 +1,19 @@
+<nav class="navbar navbar-light text-light bg-danger">
+  <a class="navbar-brand">
+    <h4>Lista de Quehacer en este 18 </h4>
+  </a>
+  <ul class="nav item">
+    <% if user_signed_in? %>
+      <li class="nav-item <%= 'active' if action_name == 'Salir'%>">
+      <%= link_to "Salir", destroy_user_session_path, method: :delete, class:"nav-item nav-link" %>
+      </li>
+      <% else %>
+      <li class="nav-item <%= 'active' if action_name == 'Iniciar sesión'%>">
+      <%= link_to "Iniciar sesión", new_user_session_path, class:"nav-item nav-link" %>
+      </li>
+      <li class="nav-item <%= 'active' if action_name == 'Registrarse'%>">
+      <%= link_to "Registro", new_user_registration_path, class:"nav-item nav-link" %>
+      <% end %>
+      </li>
+    </ul>
+</nav>
