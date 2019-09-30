@@ -1,5 +1,18 @@
-<img src="<%= @task.photo %>" alt="photo">
-<h3><%= "#{@task.name}"%></h3>
-<h3><%= "#{@task.description}"%></h3>
+
+<table class= "table">
+  <thead class="bg-success">
+    <tr>
+      <th>Usuarios que completaron su tarea</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todos.each do |todo| %>
+      <tr>
+        <td><%= todo.user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'Back', root_path %>

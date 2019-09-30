@@ -1,34 +1,62 @@
-<div class="container">
-    <h1>Tasks#index</h1>
-    <p>Find me in app/views/tasks/index.html.erb</p>
-
-    <% @todos.each_slice(3) do |todos| %>
-    <div class="card-deck">
-        <% todos.each do |todo| %>
-            <% if todo.completed? %>
-                <div class="card">
-                    <%= image_tag todo.task.photo, class: "card-img-top" %>
-                    <div class="card-body">
-                        <h3 class='card-title'><%= todo.task.name %></h3>
-                        <h3 class='card-title'><%= todo.task.description %></h3>
-                        <%= link_to "Listo", update_todo_path(todo), method: :patch, class: "btn btn-success" %>
-                        <%= link_to 'Ver', todo_path(todo), class:"btn btn-info" %>
+<% if user_signed_in? %> 
+    <div class="container">
+        <h1>Tasks#index</h1>
+        <p>Find me in app/views/tasks/index.html.erb</p>
+            
+        <% @todos.each_slice(3) do |todos| %>
+        <div class="card-deck">
+            <% todos.each do |todo| %>
+                <% if todo.completed? %>
+                    <div class="card">
+                        <%= image_tag todo.task.photo, class: "card-img-top" %>
+                        <div class="card-body">
+                            <h3 class='card-title'><%= todo.task.name %></h3>
+                            <h3 class='card-title'><%= todo.task.description %></h3>
+                            <h5 class='card-title'><%= todo.user.email %></h5>
+                            <%= link_to "Listo", update_todo_path(todo), method: :patch, class: "btn btn-success" %>
+                            <%= link_to 'Ver', todo_path(todo), class:"btn btn-info" %>
+                            <%= link_to 'Detalle', todo_path(todo), class:'btn btn-light' %> 
+                        </div>
                     </div>
-                </div>
-            <% else %>
-                <div class="card">
-                    <%= image_tag todo.task.photo, class: "card-img-top" %>
-                    <div class="card-body">
-                        <h3 class='card-title'><%= todo.task.name %> </h3>
-                        <h3 class='card-title'><%= todo.task.description %></h3>
-                        <%= link_to "Pendiente", update_todo_path(todo), method: :patch, class: "btn btn-warning" %>
-                        <%= link_to 'Ver', todo_path(todo), class:"btn btn-info" %>
+                <% else %>
+                    <div class="card">
+                        <%= image_tag todo.task.photo, class: "card-img-top" %>
+                        <div class="card-body">
+                            <h3 class='card-title'><%= todo.task.name %> </h3>
+                            <h3 class='card-title'><%= todo.task.description %></h3>
+                            <h5 class='card-title'><%= todo.user.email %></h5>
+                            <%= link_to "No Completada", update_todo_path(todo), method: :patch, class: "btn btn-warning" %>
+                            <%= link_to 'Ver', todo_path(todo), class:"btn btn-info" %>
+                            <%= link_to 'Detalle', todo_path(todo), class:'btn btn-light' %>
+                        </div>
                     </div>
-                </div>
+                <% end %>
             <% end %>
+        </div>
         <% end %>
     </div>
-    <br>
-    <% end %>
-</div>
+    <% else %>
+    <div class="container">
+        <% @tasks.each_slice(3) do |tasks| %>
+            <div class="card-deck">
+                <% tasks.each do |task| %>
+                    <div class="card">
+                        <%= image_tag task.photo, class: "card-img-top" %>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= task.name  %></h5>
+                            <h3 class='card-title'><%= todo.task.description %></h3>
+                            <h5 class='card-title'><%= todo.user.email %></h5> 
+                            <%= link_to "Listo", update_todo_path(task), method: :patch, class: "btn btn-success" %>
+                            <%= link_to 'Detalle', todo_path(task), class:'btn btn-light' %> 
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+            <br>
+        <% end %>
+    </div>
+<% end %>
+
+
+
 

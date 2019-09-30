@@ -1,8 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
 <h1>Todos#index</h1>
-<% @todos.each do |todo| %>
-      
-       <%= todo.completed %>
-        <%= todo.task.name %>
-        <%= todo.user.email %>
-    
+<table class="table">
+  <thead>
+    <tr>
+      <th>Completed</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todos.each do |todo| %>
+      <tr>
+        <td><%= todo.completed %></td>
+        <td><%= todo.task.name %></td>
+        <td><%= todo.user.email %></td>
+        <td><%= link_to 'Show', todo_path(todo) %></td>
+      </tr>
     <% end %>
+  </tbody>
+</table>
+</div class="container">
+<br>

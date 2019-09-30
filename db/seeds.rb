@@ -15,4 +15,3 @@ Task.destroy_all
         photo: "https://picsum.photos/id/#{i+6}/500/500"
     )
 end
-

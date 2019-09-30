@@ -2,12 +2,6 @@ class TodosController < ApplicationController
   #before_action :set_task, only: [:show]
   before_action :authenticate_user!, except: [:index]
 
-  def index
-    @todos = Todo.all
-    @tasks = Task.all
-    
-  end
-
   def show
     todo = Todo.find(params[:todo_id])
     @task = todo.task
@@ -21,9 +15,10 @@ class TodosController < ApplicationController
     redirect_to root_path
   end
 
-  # private
+  def todos_count
 
-  # def set_task
-  #     @task = Task.find(params[:task_id])
-  # end
+    @todo_check_count = current_user.todos.where(completed: true)
+    @tasks_count = Task.all.count
+    
+  end
 end
