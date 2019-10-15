@@ -44,8 +44,7 @@
                         <%= image_tag task.photo, class: "card-img-top" %>
                         <div class="card-body">
                             <h5 class="card-title"><%= task.name  %></h5>
-                            <h3 class='card-title'><%= todo.task.description %></h3>
-                            <h5 class='card-title'><%= todo.user.email %></h5> 
+                            
                             <%= link_to "Listo", update_todo_path(task), method: :patch, class: "btn btn-success" %>
                             <%= link_to 'Detalle', todo_path(task), class:'btn btn-light' %> 
                         </div>
